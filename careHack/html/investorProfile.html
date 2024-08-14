@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Investor Profile</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Create Investor Profile</h1>
+    </header>
+
+    <main>
+        <form id="investorProfileForm">
+            <label for="fullName">Full Name:</label>
+            <input type="text" id="fullName" name="fullName" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <label for="investmentInterests">Investment Interests:</label>
+            <select id="investmentInterests" name="investmentInterests" multiple required>
+                <option value="tech">Technology</option>
+                <option value="health">Healthcare</option>
+                <option value="finance">Finance</option>
+                <option value="education">Education</option>
+                <option value="energy">Energy</option>
+            </select>
+
+            <label for="investmentBudget">Investment Budget Range:</label>
+            <select id="investmentBudget" name="investmentBudget" required>
+                <option value="0-50k">$0 - $50,000</option>
+                <option value="50k-250k">$50,000 - $250,000</option>
+                <option value="250k-1m">$250,000 - $1 million</option>
+                <option value="1m+">$1 million+</option>
+            </select>
+
+            <label for="bio">Bio:</label>
+            <textarea id="bio" name="bio" rows="4"></textarea>
+
+            <button type="submit">Create Profile</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Investor-Startup Platform</p>
+    </footer>
+
+    <script src="js/investorProfile.js"></script>
+</body>
+</html>

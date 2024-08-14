@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Startup Profile</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Create Startup Profile</h1>
+    </header>
+
+    <main>
+        <form id="startupProfileForm">
+            <label for="companyName">Company Name:</label>
+            <input type="text" id="companyName" name="companyName" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <label for="businessType">Business Type:</label>
+            <select id="businessType" name="businessType" required>
+                <option value="tech">Technology</option>
+                <option value="health">Healthcare</option>
+                <option value="finance">Finance</option>
+                <option value="education">Education</option>
+                <option value="energy">Energy</option>
+            </select>
+
+            <label for="fundingStage">Funding Stage:</label>
+            <select id="fundingStage" name="fundingStage" required>
+                <option value="seed">Seed</option>
+                <option value="seriesA">Series A</option>
+                <option value="seriesB">Series B</option>
+                <option value="seriesC">Series C</option>
+            </select>
+
+            <label for="fundingNeeded">Funding Needed:</label>
+            <input type="number" id="fundingNeeded" name="fundingNeeded" required>
+
+            <label for="pitchSummary">Pitch Summary:</label>
+            <textarea id="pitchSummary" name="pitchSummary" rows="4" required></textarea>
+
+            <label for="teamSize">Team Size:</label>
+            <input type="number" id="teamSize" name="teamSize" required>
+
+            <button type="submit">Create Profile</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Investor-Startup Platform</p>
+    </footer>
+
+    <script src="js/startupProfile.js"></script>
+</body>
+</html>
