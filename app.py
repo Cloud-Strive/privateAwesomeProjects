@@ -1,16 +1,3 @@
-# %%
-pip install pandas numpy flask flask_sqlalchemy flask_login flask_wtf joblib flask_mail scikit-learn sqlalchemy wtforms
-
-# %%
-pip install flask-upgrade
-
-# %%
-pip install itsdangerous==2.0.1
-
-# %%
-pip install email_validator
-
-# %%
 import pandas as pd
 import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -50,6 +37,8 @@ app.config['MAIL_USE_TLS'] = True
 app.config['MAIL_USERNAME'] = 'your-email@gmail.com'  # Replace with your email
 app.config['MAIL_PASSWORD'] = 'your-password'  # Replace with your email password
 
+
+# %%
 db = SQLAlchemy(app)
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
@@ -77,6 +66,11 @@ class User(UserMixin, db.Model):
             return None
         return User.query.get(user_id)
 
+
+
+
+
+# %%
 class StartupProfile(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
@@ -87,6 +81,7 @@ class StartupProfile(db.Model):
     pitch_summary = db.Column(db.Text, nullable=False)
     team_size = db.Column(db.Integer, nullable=False)
 
+# %%
 class InvestorProfile(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
@@ -102,6 +97,7 @@ class LoginForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     submit = SubmitField('Login')
 
+# %%
 class RegistrationForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
@@ -109,15 +105,18 @@ class RegistrationForm(FlaskForm):
     user_type = StringField('User Type', validators=[DataRequired()])
     submit = SubmitField('Register')
 
+# %%
 class RequestResetForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])
     submit = SubmitField('Request Password Reset')
 
+# %%
 class ResetPasswordForm(FlaskForm):
     password = PasswordField('New Password', validators=[DataRequired()])
     confirm_password = PasswordField('Confirm New Password', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Reset Password')
 
+# %%
 class StartupProfileForm(FlaskForm):
     company_name = StringField('Company Name', validators=[DataRequired()])
     business_type = StringField('Business Type', validators=[DataRequired()])
@@ -127,6 +126,7 @@ class StartupProfileForm(FlaskForm):
     team_size = IntegerField('Team Size', validators=[DataRequired()])
     submit = SubmitField('Submit')
 
+# %%
 class InvestorProfileForm(FlaskForm):
     full_name = StringField('Full Name', validators=[DataRequired()])
     investment_interests = StringField('Investment Interests', validators=[DataRequired()])
@@ -139,6 +139,7 @@ class InvestorProfileForm(FlaskForm):
 def load_user(user_id):
     return User.query.get(int(user_id))
 
+# %%
 def send_email(to, subject, template):
     msg = Message(
         subject,
@@ -148,6 +149,7 @@ def send_email(to, subject, template):
     )
     mail.send(msg)
 
+# %%
 # Function to load CSV files
 def load_csv(file_path, encoding='utf-8', separator=','):
     if not os.path.exists(file_path):
@@ -309,14 +311,8 @@ def process_data_and_train_model():
 
     return best_model, vectorizer, feature_selector
 
-
-
-
-
-
-
 # %%
-def initialize_database():
+with app.app_context():
     db.create_all()
 
 # %%
@@ -344,6 +340,7 @@ def about():
     return render_template('about.html')
 
 # %%
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
@@ -549,7 +546,6 @@ def add_profile():
 
 # %%
 if __name__ == '__main__':
-    initialize_database()
     app.run(debug=True)
 
 
